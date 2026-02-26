@@ -1,21 +1,17 @@
 import Trans from "@excalidraw/excalidraw/components/Trans";
 import { t } from "@excalidraw/excalidraw/i18n";
-import * as Sentry from "@sentry/browser";
 import React from "react";
 
 interface TopErrorBoundaryState {
   hasError: boolean;
-  sentryEventId: string;
+  localErrorId: string;
   localStorage: string;
 }
 
-export class TopErrorBoundary extends React.Component<
-  any,
-  TopErrorBoundaryState
-> {
+export class TopErrorBoundary extends React.Component<any, TopErrorBoundaryState> {
   state: TopErrorBoundaryState = {
     hasError: false,
-    sentryEventId: "",
+    localErrorId: "",
     localStorage: "",
   };
 
@@ -24,24 +20,22 @@ export class TopErrorBoundary extends React.Component<
   }
 
   componentDidCatch(error: Error, errorInfo: any) {
-    const _localStorage: any = {};
+    const _localStorage: Record<string, unknown> = {};
     for (const [key, value] of Object.entries({ ...localStorage })) {
       try {
         _localStorage[key] = JSON.parse(value);
-      } catch (error: any) {
+      } catch {
         _localStorage[key] = value;
       }
     }
 
-    Sentry.withScope((scope) => {
-      scope.setExtras(errorInfo);
-      const eventId = Sentry.captureException(error);
+    const localErrorId = `offline-${Date.now().toString(36)}`;
+    console.error("Application error", localErrorId, error, errorInfo);
 
-      this.setState((state) => ({
-        hasError: true,
-        sentryEventId: eventId,
-        localStorage: JSON.stringify(_localStorage),
-      }));
+    this.setState({
+      hasError: true,
+      localErrorId,
+      localStorage: JSON.stringify(_localStorage),
     });
   }
 
@@ -50,26 +44,6 @@ export class TopErrorBoundary extends React.Component<
       event.preventDefault();
       (event.target as HTMLTextAreaElement).select();
     }
-  }
-
-  private async createGithubIssue() {
-    let body = "";
-    try {
-      const templateStrFn = (
-        await import(
-          /* webpackChunkName: "bug-issue-template" */ "../bug-issue-template"
-        )
-      ).default;
-      body = encodeURIComponent(templateStrFn(this.state.sentryEventId));
-    } catch (error: any) {
-      console.error(error);
-    }
-
-    window.open(
-      `https://github.com/excalidraw/excalidraw/issues/new?body=${body}`,
-      "_blank",
-      "noopener noreferrer",
-    );
   }
 
   private errorSplash() {
@@ -105,27 +79,17 @@ export class TopErrorBoundary extends React.Component<
             <br />
             <div className="smaller">
               <span role="img" aria-label="warning">
-                ⚠️
+                !
               </span>
               {t("errorSplash.clearCanvasCaveat")}
               <span role="img" aria-hidden="true">
-                ⚠️
+                !
               </span>
             </div>
           </div>
           <div>
             <div className="ErrorSplash-paragraph">
-              {t("errorSplash.trackedToSentry", {
-                eventId: this.state.sentryEventId,
-              })}
-            </div>
-            <div className="ErrorSplash-paragraph">
-              <Trans
-                i18nKey="errorSplash.openIssueMessage"
-                button={(el) => (
-                  <button onClick={() => this.createGithubIssue()}>{el}</button>
-                )}
-              />
+              Local error ID: {this.state.localErrorId}
             </div>
             <div className="ErrorSplash-paragraph">
               <div className="ErrorSplash-details">

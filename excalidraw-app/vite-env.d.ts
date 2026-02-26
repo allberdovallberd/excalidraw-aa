@@ -10,12 +10,10 @@ interface ImportMetaEnv {
 
   // collaboration WebSocket server (https: string
   VITE_APP_WS_SERVER_URL: string;
+  VITE_APP_STORAGE_BACKEND_URL: string;
 
   // set this only if using the collaboration workflow we use on excalidraw.com
   VITE_APP_PORTAL_URL: string;
-  VITE_APP_AI_BACKEND: string;
-
-  VITE_APP_FIREBASE_CONFIG: string;
 
   // whether to disable live reload / HMR. Usuaully what you want to do when
   // debugging Service Workers.
@@ -31,10 +29,6 @@ interface ImportMetaEnv {
 
   // Enable PWA in dev server
   VITE_APP_ENABLE_PWA: string;
-
-  VITE_APP_PLUS_LP: string;
-
-  VITE_APP_PLUS_APP: string;
 
   VITE_APP_GIT_SHA: string;
 

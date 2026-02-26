@@ -1,4 +1,4 @@
-import { CaptureUpdateAction, newElementWith } from "@excalidraw/excalidraw";
+﻿import { CaptureUpdateAction, newElementWith } from "@excalidraw/excalidraw";
 import {
   createRedoAction,
   createUndoAction,
@@ -27,25 +27,25 @@ Object.defineProperty(window, "crypto", {
   },
 });
 
-vi.mock("../../excalidraw-app/data/firebase.ts", () => {
-  const loadFromFirebase = async () => null;
-  const saveToFirebase = () => {};
-  const isSavedToFirebase = () => true;
-  const loadFilesFromFirebase = async () => ({
+vi.mock("../../excalidraw-app/data/storageBackend.ts", () => {
+  const loadFromStorage = async () => null;
+  const saveToStorage = () => {};
+  const isSavedToStorage = () => true;
+  const loadFilesFromStorage = async () => ({
     loadedFiles: [],
     erroredFiles: [],
   });
-  const saveFilesToFirebase = async () => ({
+  const saveFilesToStorage = async () => ({
     savedFiles: new Map(),
     erroredFiles: new Map(),
   });
 
   return {
-    loadFromFirebase,
-    saveToFirebase,
-    isSavedToFirebase,
-    loadFilesFromFirebase,
-    saveFilesToFirebase,
+    loadFromStorage,
+    saveToStorage,
+    isSavedToStorage,
+    loadFilesFromStorage,
+    saveFilesToStorage,
   };
 });
 
