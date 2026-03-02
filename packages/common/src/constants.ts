@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   ExcalidrawElement,
   FontFamilyValues,
 } from "@excalidraw/element/types";
@@ -9,7 +9,7 @@ import { COLOR_PALETTE } from "./colors";
 export const supportsResizeObserver =
   typeof window !== "undefined" && "ResizeObserver" in window;
 
-export const APP_NAME = "Excalidraw";
+export const APP_NAME = "Akylly Tagta";
 
 // distance when creating text before it's considered `autoResize: false`
 // we're using higher threshold so that clicks that end up being drags
@@ -140,7 +140,7 @@ export const FONT_FAMILY = {
   Assistant: 10,
 };
 
-// Segoe UI Emoji fails to properly fallback for some glyphs: ∞, ∫, ≠
+// Segoe UI Emoji fails to properly fallback for some glyphs: в€ћ, в€«, в‰ 
 // so we need to have generic font fallback before it
 export const SANS_SERIF_GENERIC_FONT = "sans-serif";
 export const MONOSPACE_GENERIC_FONT = "monospace";
@@ -339,7 +339,7 @@ export const DEFAULT_EXPORT_PADDING = 10; // px
 
 export const DEFAULT_MAX_IMAGE_WIDTH_OR_HEIGHT = 1440;
 
-export const MAX_ALLOWED_FILE_BYTES = 4 * 1024 * 1024;
+export const MAX_ALLOWED_FILE_BYTES = 100 * 1024 * 1024;
 
 export const SVG_NS = "http://www.w3.org/2000/svg";
 export const SVG_DOCUMENT_PREAMBLE = `<?xml version="1.0" standalone="no"?>
@@ -513,3 +513,4 @@ export const BIND_MODE_TIMEOUT = 700; // ms
 export const MOBILE_ACTION_BUTTON_BG = {
   background: "var(--mobile-action-button-bg)",
 } as const;
+

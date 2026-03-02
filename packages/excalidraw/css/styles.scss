@@ -36,8 +36,8 @@ body.excalidraw-cursor-resize * {
 }
 
 .excalidraw {
-  --ui-font: Assistant, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI,
-    Roboto, Helvetica, Arial, sans-serif;
+  --ui-font: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto,
+    Helvetica, Arial, sans-serif;
   font-family: var(--ui-font);
 
   position: relative;
@@ -808,6 +808,6 @@ body.excalidraw-cursor-resize * {
     color: #fff;
     font-weight: 700;
     letter-spacing: 0.6px;
-    font-family: "Assistant";
+    font-family: var(--ui-font);
   }
 }

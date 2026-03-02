@@ -28,21 +28,35 @@ class Portal {
   socketInitialized: boolean = false; // we don't want the socket to emit any updates until it is fully initialized
   roomId: string | null = null;
   roomKey: string | null = null;
+  defaultJoinRole: "editor" | "viewer" = "editor";
+  ownerClaim: string | null = null;
   broadcastedElementVersions: Map<string, number> = new Map();
 
   constructor(collab: TCollabClass) {
     this.collab = collab;
   }
 
-  open(socket: Socket, id: string, key: string) {
+  open(
+    socket: Socket,
+    id: string,
+    key: string,
+    defaultJoinRole: "editor" | "viewer" = "editor",
+    ownerClaim: string | null = null,
+  ) {
     this.socket = socket;
     this.roomId = id;
     this.roomKey = key;
+    this.defaultJoinRole = defaultJoinRole;
+    this.ownerClaim = ownerClaim;
 
     // Initialize socket listeners
     this.socket.on("init-room", () => {
       if (this.socket) {
-        this.socket.emit("join-room", this.roomId);
+        this.socket.emit("join-room", {
+          roomId: this.roomId,
+          defaultJoinRole: this.defaultJoinRole,
+          ownerClaim: this.ownerClaim,
+        });
         trackEvent("share", "room joined");
       }
     });
@@ -70,6 +84,7 @@ class Portal {
     this.roomId = null;
     this.roomKey = null;
     this.socketInitialized = false;
+    this.ownerClaim = null;
     this.broadcastedElementVersions = new Map();
   }
 

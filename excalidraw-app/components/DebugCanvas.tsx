@@ -322,7 +322,12 @@ const render = (
         );
         break;
       case isDebugPolygon(el.data):
-        renderPolygon(context, appState.zoom.value, el.data, el.color);
+        renderPolygon(
+          context,
+          appState.zoom.value,
+          el.data as DebugPolygon,
+          el.color,
+        );
         break;
       default:
         throw new Error(`Unknown element type ${JSON.stringify(el)}`);

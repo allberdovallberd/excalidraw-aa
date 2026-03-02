@@ -1231,18 +1231,20 @@ const updateArrowBindings = (
         scene.getNonDeletedElements(),
         appState,
       );
+    const bindingStrategy = strategy[strategyName];
+    const mode = bindingStrategy?.mode;
     if (
-      strategy[strategyName] &&
-      strategy[strategyName].element?.id === bindableElement.id &&
-      strategy[strategyName].mode
+      bindingStrategy &&
+      bindingStrategy.element?.id === bindableElement.id &&
+      mode != null
     ) {
       bindBindingElement(
         latestElement,
         bindableElement,
-        strategy[strategyName].mode,
+        mode,
         strategyName,
         scene,
-        strategy[strategyName].focusPoint,
+        bindingStrategy.focusPoint,
       );
     }
   }

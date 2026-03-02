@@ -34,7 +34,7 @@
     "prettier": "2.6.2",
     "rewire": "6.0.0",
     "rimraf": "^5.0.0",
-    "typescript": "5.9.3",
+    "typescript": "5.1.6",
     "vite": "5.0.12",
     "vite-plugin-checker": "0.7.2",
     "vite-plugin-ejs": "1.7.0",
@@ -88,7 +88,5 @@
     "rm:node_modules": "rimraf --glob node_modules excalidraw-app/node_modules packages/*/node_modules",
     "clean-install": "yarn rm:node_modules && yarn install"
   },
-  "resolutions": {
-    "strip-ansi": "6.0.1"
-  }
+  "dependencies": {}
 }

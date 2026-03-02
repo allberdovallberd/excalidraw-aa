@@ -11096,6 +11096,34 @@ class App extends React.Component<AppProps, AppState> {
         );
       }
 
+      // In collaboration mode, keep uploaded image payloads small so peers can
+      // reliably fetch/render them even behind strict proxy limits.
+      if (this.props.isCollaborating && mimeType !== MIME_TYPES.svg) {
+        const targetUploadBytes = 900 * 1024;
+        const downscaleSteps = [1280, 1024, 800, 640];
+
+        if (imageFile.size > targetUploadBytes) {
+          for (const maxWidthOrHeight of downscaleSteps) {
+            try {
+              imageFile = await resizeImageFile(imageFile, {
+                maxWidthOrHeight,
+                outputType: MIME_TYPES.jpg,
+              });
+            } catch (error: any) {
+              console.error(
+                "Error trying to optimize image for collaboration upload",
+                error,
+              );
+              break;
+            }
+
+            if (imageFile.size <= targetUploadBytes) {
+              break;
+            }
+          }
+        }
+      }
+
       if (imageFile.size > MAX_ALLOWED_FILE_BYTES) {
         throw new Error(
           t("errors.fileTooBig", {

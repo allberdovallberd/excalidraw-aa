@@ -19,11 +19,11 @@ import { useScrollPosition } from "../hooks/useScrollPosition";
 import { t } from "../i18n";
 
 import { LibraryMenuControlButtons } from "./LibraryMenuControlButtons";
-import { LibraryDropdownMenu } from "./LibraryMenuHeaderContent";
 import {
   LibraryMenuSection,
   LibraryMenuSectionGrid,
 } from "./LibraryMenuSection";
+import { chevronRight } from "./icons";
 
 import Spinner from "./Spinner";
 import Stack from "./Stack";
@@ -44,6 +44,12 @@ import type {
   LibraryItems,
   UIAppState,
 } from "../types";
+
+type LibraryItemWithSource = LibraryItem & {
+  sourceLibrary?: string;
+  sourceLibraryName?: string;
+  category?: string;
+};
 
 // using an odd number of items per batch so the rendering creates an irregular
 // pattern which looks more organic
@@ -120,6 +126,34 @@ export default function LibraryMenuItems({
     () => libraryItems.filter((item) => item.status === "published"),
     [libraryItems],
   );
+  const groupedPublishedItems = useMemo(() => {
+    const groups = new Map<
+      string,
+      { label: string; items: LibraryItemWithSource[] }
+    >();
+    for (const item of publishedItems as LibraryItemWithSource[]) {
+      const key = item.sourceLibrary || item.category || "library";
+      const label = item.sourceLibraryName || key;
+      if (!groups.has(key)) {
+        groups.set(key, { label, items: [] });
+      }
+      groups.get(key)!.items.push(item);
+    }
+    return Array.from(groups.entries())
+      .map(([key, group]) => ({
+        key,
+        label: group.label,
+        items: group.items.sort((a, b) => {
+          const nameA = a.name || "";
+          const nameB = b.name || "";
+          return nameA.localeCompare(nameB);
+        }),
+      }))
+      .sort((a, b) => a.label.localeCompare(b.label));
+  }, [publishedItems]);
+  const [expandedPublishedGroups, setExpandedPublishedGroups] = useState<
+    Record<string, boolean>
+  >({});
 
   const onItemSelectToggle = useCallback(
     (id: LibraryItem["id"], event: React.MouseEvent) => {
@@ -243,6 +277,12 @@ export default function LibraryMenuItems({
     },
     [getInsertedElements, onInsertLibraryItems],
   );
+  const togglePublishedGroup = useCallback((groupName: string) => {
+    setExpandedPublishedGroups((prev) => ({
+      ...prev,
+      [groupName]: !prev[groupName],
+    }));
+  }, []);
 
   const itemsRenderedPerBatch =
     svgCache.size >=
@@ -312,17 +352,51 @@ export default function LibraryMenuItems({
         </div>
       )}
       {publishedItems.length > 0 && (
-        <LibraryMenuSectionGrid>
-          <LibraryMenuSection
-            itemsRenderedPerBatch={itemsRenderedPerBatch}
-            items={publishedItems}
-            onItemSelectToggle={onItemSelectToggle}
-            onItemDrag={onItemDrag}
-            onClick={onItemClick}
-            isItemSelected={isItemSelected}
-            svgCache={svgCache}
-          />
-        </LibraryMenuSectionGrid>
+        <div className="library-menu-items-container__library-groups">
+          {groupedPublishedItems.map((group) => {
+            const isExpanded = !!expandedPublishedGroups[group.key];
+            return (
+              <div
+                key={group.key}
+                className="library-menu-items-container__library-group"
+              >
+                <button
+                  type="button"
+                  className="library-menu-items-container__library-group-toggle"
+                  onClick={() => togglePublishedGroup(group.key)}
+                >
+                  <span
+                    className="library-menu-items-container__library-group-chevron"
+                    style={{
+                      transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
+                    }}
+                  >
+                    {chevronRight}
+                  </span>
+                  <span className="library-menu-items-container__library-group-name">
+                    {group.label}
+                  </span>
+                  <span className="library-menu-items-container__library-group-count">
+                    {group.items.length}
+                  </span>
+                </button>
+                {isExpanded && (
+                  <LibraryMenuSectionGrid>
+                    <LibraryMenuSection
+                      itemsRenderedPerBatch={itemsRenderedPerBatch}
+                      items={group.items}
+                      onItemSelectToggle={onItemSelectToggle}
+                      onItemDrag={onItemDrag}
+                      onClick={onItemClick}
+                      isItemSelected={isItemSelected}
+                      svgCache={svgCache}
+                    />
+                  </LibraryMenuSectionGrid>
+                )}
+              </div>
+            );
+          })}
+        </div>
       )}
     </>
   );
@@ -399,11 +473,6 @@ export default function LibraryMenuItems({
             onChange={(value) => setSearchInputValue(value)}
           />
         )}
-        <LibraryDropdownMenu
-          selectedItems={selectedItems}
-          onSelectItems={onSelectItems}
-          className="library-menu-dropdown-container--in-heading"
-        />
       </div>
       <Stack.Col
         className="library-menu-items-container__items"

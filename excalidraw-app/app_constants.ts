@@ -1,4 +1,4 @@
-﻿// time constants (ms)
+// time constants (ms)
 export const SAVE_TO_LOCAL_STORAGE_TIMEOUT = 300;
 export const INITIAL_SCENE_UPDATE_TIMEOUT = 5000;
 export const FILE_UPLOAD_TIMEOUT = 300;
@@ -9,7 +9,7 @@ export const CURSOR_SYNC_TIMEOUT = 33; // ~30fps
 export const DELETED_ELEMENT_TIMEOUT = 24 * 60 * 60 * 1000; // 1 day
 
 // should be aligned with MAX_ALLOWED_FILE_BYTES
-export const FILE_UPLOAD_MAX_BYTES = 4 * 1024 * 1024; // 4 MiB
+export const FILE_UPLOAD_MAX_BYTES = 100 * 1024 * 1024; // 100 MiB
 // 1 year (https://stackoverflow.com/a/25201898/927631)
 export const FILE_CACHE_MAX_AGE_SEC = 31536000;
 

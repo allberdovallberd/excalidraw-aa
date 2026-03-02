@@ -73,6 +73,15 @@ export const importFromLocalStorage = () => {
   return { elements, appState };
 };
 
+export const clearSceneFromLocalStorage = () => {
+  try {
+    localStorage.removeItem(STORAGE_KEYS.LOCAL_STORAGE_ELEMENTS);
+    localStorage.removeItem(STORAGE_KEYS.LOCAL_STORAGE_APP_STATE);
+  } catch (error: any) {
+    console.error(error);
+  }
+};
+
 export const getElementsStorageSize = () => {
   try {
     const elements = localStorage.getItem(STORAGE_KEYS.LOCAL_STORAGE_ELEMENTS);

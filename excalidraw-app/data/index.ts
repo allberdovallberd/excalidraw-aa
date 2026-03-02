@@ -1,4 +1,4 @@
-﻿import {
+import {
   compressData,
   decompressData,
 } from "@excalidraw/excalidraw/data/encode";
@@ -28,6 +28,7 @@ import type {
   SocketId,
 } from "@excalidraw/excalidraw/types";
 import type { MakeBrand } from "@excalidraw/common/utility-types";
+import type { LibraryItems } from "@excalidraw/excalidraw/types";
 
 import {
   DELETED_ELEMENT_TIMEOUT,
@@ -37,6 +38,7 @@ import {
 
 import { encodeFilesForUpload } from "./FileManager";
 import { saveFilesToStorage } from "./storageBackend";
+import { getAuthHeaders } from "./sessionToken";
 
 import type { WS_SUBTYPES } from "../app_constants";
 
@@ -64,6 +66,7 @@ export const getSyncableElements = (
 
 const BACKEND_V2_GET = import.meta.env.VITE_APP_BACKEND_V2_GET_URL;
 const BACKEND_V2_POST = import.meta.env.VITE_APP_BACKEND_V2_POST_URL;
+const LIBRARY_BACKEND = import.meta.env.VITE_APP_LIBRARY_BACKEND;
 
 const generateRoomId = async () => {
   const buffer = new Uint8Array(ROOM_ID_BYTES);
@@ -204,7 +207,9 @@ export const importFromBackend = async (
   decryptionKey: string,
 ): Promise<ImportedDataState> => {
   try {
-    const response = await fetch(`${BACKEND_V2_GET}${id}`);
+    const response = await fetch(`${BACKEND_V2_GET}${id}`, {
+      headers: getAuthHeaders(),
+    });
 
     if (!response.ok) {
       window.alert(t("alerts.importBackendFailed"));
@@ -275,6 +280,7 @@ export const exportToBackend = async (
 
     const response = await fetch(BACKEND_V2_POST, {
       method: "POST",
+      headers: getAuthHeaders(),
       body: payload.buffer,
     });
     const json = await response.json();
@@ -305,3 +311,50 @@ export const exportToBackend = async (
     return { url: null, errorMessage: t("alerts.couldNotCreateShareableLink") };
   }
 };
+
+export const loadPublishedLibraries = async (): Promise<LibraryItems> => {
+  try {
+    const response = await fetch(LIBRARY_BACKEND);
+    if (!response.ok) {
+      return [];
+    }
+    const data = (await response.json()) as { libraryItems?: LibraryItems };
+    return data.libraryItems || [];
+  } catch (error) {
+    console.error("failed to load published libraries", error);
+    return [];
+  }
+};
+
+export type PublishedLibraryCatalog = {
+  libraries: Array<{
+    id: string;
+    name: string;
+    category: string;
+    count: number;
+  }>;
+  categories: Array<{
+    name: string;
+    count: number;
+  }>;
+  loadedAt: number;
+};
+
+export const loadPublishedLibraryCatalog =
+  async (): Promise<PublishedLibraryCatalog> => {
+    try {
+      const response = await fetch(LIBRARY_BACKEND);
+      if (!response.ok) {
+        return { libraries: [], categories: [], loadedAt: 0 };
+      }
+      const data = (await response.json()) as Partial<PublishedLibraryCatalog>;
+      return {
+        libraries: data.libraries || [],
+        categories: data.categories || [],
+        loadedAt: data.loadedAt || 0,
+      };
+    } catch (error) {
+      console.error("failed to load published library catalog", error);
+      return { libraries: [], categories: [], loadedAt: 0 };
+    }
+  };

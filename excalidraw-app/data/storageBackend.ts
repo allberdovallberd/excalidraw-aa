@@ -1,7 +1,10 @@
-﻿import { reconcileElements } from "@excalidraw/excalidraw";
+import { reconcileElements } from "@excalidraw/excalidraw";
 import { MIME_TYPES, toBrandedType } from "@excalidraw/common";
 import { decompressData } from "@excalidraw/excalidraw/data/encode";
-import { encryptData, decryptData } from "@excalidraw/excalidraw/data/encryption";
+import {
+  encryptData,
+  decryptData,
+} from "@excalidraw/excalidraw/data/encryption";
 import { restoreElements } from "@excalidraw/excalidraw/data/restore";
 import { getSceneVersion } from "@excalidraw/element";
 
@@ -17,6 +20,8 @@ import type {
   BinaryFileMetadata,
   DataURL,
 } from "@excalidraw/excalidraw/types";
+
+import { getAuthHeaders } from "./sessionToken";
 
 import { getSyncableElements } from ".";
 
@@ -59,6 +64,14 @@ const getStorageBackendBaseUrl = () => {
 };
 
 const STORAGE_BACKEND_BASE_URL = getStorageBackendBaseUrl();
+
+const STORAGE_BACKEND_ERRORS = {
+  ROOM_STOPPED: "ROOM_STOPPED",
+} as const;
+
+export const isRoomStoppedError = (error: unknown) =>
+  error instanceof Error &&
+  error.message === STORAGE_BACKEND_ERRORS.ROOM_STOPPED;
 
 type LocalStoredScene = {
   sceneVersion: number;
@@ -105,7 +118,9 @@ class LocalSceneVersionCache {
 }
 
 const getSceneEndpoint = (roomId: string) =>
-  `${STORAGE_BACKEND_BASE_URL}/api/storage/scenes/${encodeURIComponent(roomId)}`;
+  `${STORAGE_BACKEND_BASE_URL}/api/storage/scenes/${encodeURIComponent(
+    roomId,
+  )}`;
 
 const getFileEndpoint = (prefix: string, id: string) =>
   `${STORAGE_BACKEND_BASE_URL}/api/storage/file?prefix=${encodeURIComponent(
@@ -115,9 +130,14 @@ const getFileEndpoint = (prefix: string, id: string) =>
 const readStoredScene = async (
   roomId: string,
 ): Promise<LocalStoredScene | null> => {
-  const response = await fetch(getSceneEndpoint(roomId));
+  const response = await fetch(getSceneEndpoint(roomId), {
+    headers: getAuthHeaders(),
+  });
   if (response.status === 404) {
     return null;
+  }
+  if (response.status === 410) {
+    throw new Error(STORAGE_BACKEND_ERRORS.ROOM_STOPPED);
   }
   if (!response.ok) {
     throw new Error("Failed to load scene");
@@ -130,9 +150,13 @@ const writeStoredScene = async (roomId: string, scene: LocalStoredScene) => {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      ...getAuthHeaders(),
     },
     body: JSON.stringify(scene),
   });
+  if (response.status === 410) {
+    throw new Error(STORAGE_BACKEND_ERRORS.ROOM_STOPPED);
+  }
   if (!response.ok) {
     throw new Error("Failed to save scene");
   }
@@ -175,6 +199,7 @@ export const saveFilesToStorage = async ({
           method: "POST",
           headers: {
             "Content-Type": "application/octet-stream",
+            ...getAuthHeaders(),
           },
           body: binary,
         });
@@ -225,7 +250,10 @@ export const saveToStorage = async (
   let reconciledElements = elements;
   if (previousStoredScene) {
     const prevStoredElements = getSyncableElements(
-      restoreElements(await decryptElements(previousStoredScene, roomKey), null),
+      restoreElements(
+        await decryptElements(previousStoredScene, roomKey),
+        null,
+      ),
     );
     reconciledElements = getSyncableElements(
       reconcileElements(
@@ -236,7 +264,10 @@ export const saveToStorage = async (
     );
   }
 
-  const storedScene = await createStoredSceneDocument(reconciledElements, roomKey);
+  const storedScene = await createStoredSceneDocument(
+    reconciledElements,
+    roomKey,
+  );
   await writeStoredScene(roomId, storedScene);
 
   const storedElements = getSyncableElements(
@@ -282,7 +313,9 @@ export const loadFilesFromStorage = async (
   await Promise.all(
     [...new Set(filesIds)].map(async (id) => {
       try {
-        const response = await fetch(getFileEndpoint(prefix, id));
+        const response = await fetch(getFileEndpoint(prefix, id), {
+          headers: getAuthHeaders(),
+        });
         if (response.status < 400) {
           const arrayBuffer = await response.arrayBuffer();
 

@@ -8,7 +8,10 @@ interface TopErrorBoundaryState {
   localStorage: string;
 }
 
-export class TopErrorBoundary extends React.Component<any, TopErrorBoundaryState> {
+export class TopErrorBoundary extends React.Component<
+  any,
+  TopErrorBoundaryState
+> {
   state: TopErrorBoundaryState = {
     hasError: false,
     localErrorId: "",

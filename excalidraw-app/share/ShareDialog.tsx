@@ -5,7 +5,6 @@ import { FilledButton } from "@excalidraw/excalidraw/components/FilledButton";
 import { TextField } from "@excalidraw/excalidraw/components/TextField";
 import {
   copyIcon,
-  LinkIcon,
   playerPlayIcon,
   playerStopFilledIcon,
   share,
@@ -19,15 +18,20 @@ import { KEYS, getFrame } from "@excalidraw/common";
 import { useEffect, useRef, useState } from "react";
 
 import { atom, useAtom, useAtomValue } from "../app-jotai";
-import { activeRoomLinkAtom } from "../collab/Collab";
+import {
+  activeRoomLinkAtom,
+  roomDefaultJoinRoleAtom,
+  roomParticipantsAtom,
+  roomRoleAtom,
+} from "../collab/Collab";
 
 import "./ShareDialog.scss";
 import { QRCode } from "./QRCode";
 
 import type { CollabAPI } from "../collab/Collab";
+import type { RoomUserRole } from "../collab/Collab";
 
-type OnExportToBackend = () => void;
-type ShareDialogType = "share" | "collaborationOnly";
+type ShareDialogType = "collaborationOnly";
 
 export const shareDialogStateAtom = atom<
   { isOpen: false } | { isOpen: true; type: ShareDialogType }
@@ -50,7 +54,6 @@ const getShareIcon = () => {
 export type ShareDialogProps = {
   collabAPI: CollabAPI | null;
   handleClose: () => void;
-  onExportToBackend: OnExportToBackend;
   type: ShareDialogType;
 };
 
@@ -58,10 +61,16 @@ const ActiveRoomDialog = ({
   collabAPI,
   activeRoomLink,
   handleClose,
+  roomRole,
+  defaultJoinRole,
+  participants,
 }: {
   collabAPI: CollabAPI;
   activeRoomLink: string;
   handleClose: () => void;
+  roomRole: RoomUserRole;
+  defaultJoinRole: "editor" | "viewer";
+  participants: ReturnType<CollabAPI["getRoomParticipants"]>;
 }) => {
   const { t } = useI18n();
   const [, setJustCopied] = useState(false);
@@ -69,6 +78,12 @@ const ActiveRoomDialog = ({
   const ref = useRef<HTMLInputElement>(null);
   const isShareSupported = "share" in navigator;
   const { onCopy, copyStatus } = useCopyStatus();
+  const [bulkRole, setBulkRole] = useState<"editor" | "viewer">(
+    defaultJoinRole,
+  );
+  useEffect(() => {
+    setBulkRole(defaultJoinRole);
+  }, [defaultJoinRole]);
 
   const copyRoomLink = async () => {
     try {
@@ -102,6 +117,16 @@ const ActiveRoomDialog = ({
     }
   };
 
+  const getParticipantRoleLabel = (role: RoomUserRole) => {
+    if (role === "owner") {
+      return t("roomDialog.role_owner");
+    }
+    if (role === "editor") {
+      return t("roomDialog.role_editor");
+    }
+    return t("roomDialog.role_viewer");
+  };
+
   return (
     <>
       <h3 className="ShareDialog__active__header">
@@ -109,15 +134,15 @@ const ActiveRoomDialog = ({
       </h3>
       <TextField
         defaultValue={collabAPI.getUsername()}
-        placeholder="Your name"
-        label="Your name"
+        placeholder={t("roomDialog.yourName")}
+        label={t("roomDialog.yourName")}
         onChange={collabAPI.setUsername}
         onKeyDown={(event) => event.key === KEYS.ENTER && handleClose()}
       />
       <div className="ShareDialog__active__linkRow">
         <TextField
           ref={ref}
-          label="Link"
+          label={t("roomDialog.linkLabel")}
           readonly
           fullWidth
           value={activeRoomLink}
@@ -126,7 +151,7 @@ const ActiveRoomDialog = ({
           <FilledButton
             size="large"
             variant="icon"
-            label="Share"
+            label={t("roomDialog.shareButton")}
             icon={getShareIcon()}
             className="ShareDialog__active__share"
             onClick={shareRoomLink}
@@ -157,23 +182,86 @@ const ActiveRoomDialog = ({
         </p>
         <p>{t("roomDialog.desc_exitSession")}</p>
       </div>
-
-      <div className="ShareDialog__active__actions">
-        <FilledButton
-          size="large"
-          variant="outlined"
-          color="danger"
-          label={t("roomDialog.button_stopSession")}
-          icon={playerStopFilledIcon}
-          onClick={() => {
-            trackEvent("share", "room closed");
-            collabAPI.stopCollaboration();
-            if (!collabAPI.isCollaborating()) {
-              handleClose();
-            }
-          }}
-        />
+      <div className="ShareDialog__active__roles">
+        <div className="ShareDialog__active__roles__title">
+          {t("roomDialog.sessionRoles")}
+        </div>
+        {roomRole === "owner" && (
+          <div className="ShareDialog__active__roles__bulk">
+            <select
+              className="ShareDialog__active__roles__select"
+              value={bulkRole}
+              onChange={(event) =>
+                setBulkRole(event.target.value as "editor" | "viewer")
+              }
+            >
+              <option value="editor">{t("roomDialog.role_editor")}</option>
+              <option value="viewer">{t("roomDialog.role_viewer")}</option>
+            </select>
+            <FilledButton
+              size="large"
+              label={t("roomDialog.applyAllRoles")}
+              onClick={() => collabAPI.setAllParticipantsRole(bulkRole)}
+            />
+          </div>
+        )}
+        {participants.map((participant) => {
+          return (
+            <div
+              key={participant.socketId}
+              className="ShareDialog__active__roles__row"
+            >
+              <div className="ShareDialog__active__roles__user">
+                {participant.username || participant.socketId}
+              </div>
+              {roomRole === "owner" && !participant.isCurrentUser ? (
+                <select
+                  className="ShareDialog__active__roles__select"
+                  value={participant.role}
+                  onChange={(event) =>
+                    collabAPI.setParticipantRole(
+                      participant.socketId,
+                      event.target.value as "editor" | "viewer",
+                    )
+                  }
+                >
+                  <option value="editor">{t("roomDialog.role_editor")}</option>
+                  <option value="viewer">{t("roomDialog.role_viewer")}</option>
+                </select>
+              ) : (
+                <div className="ShareDialog__active__roles__badge">
+                  {getParticipantRoleLabel(participant.role)}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
+
+      {roomRole === "owner" && (
+        <div className="ShareDialog__active__actions">
+          <FilledButton
+            size="large"
+            variant="outlined"
+            color="danger"
+            label={t("roomDialog.button_stopSession")}
+            icon={playerStopFilledIcon}
+            onClick={() => {
+              const shouldStop = window.confirm(
+                t("roomDialog.stopSessionConfirm"),
+              );
+              if (!shouldStop) {
+                return;
+              }
+              trackEvent("share", "room closed");
+              collabAPI.stopSessionForAll();
+              if (!collabAPI.isCollaborating()) {
+                handleClose();
+              }
+            }}
+          />
+        </div>
+      )}
     </>
   );
 };
@@ -182,6 +270,9 @@ const ShareDialogPicker = (props: ShareDialogProps) => {
   const { t } = useI18n();
 
   const { collabAPI } = props;
+  const [defaultJoinRole, setDefaultJoinRole] = useState<"editor" | "viewer">(
+    "viewer",
+  );
 
   const startCollabJSX = collabAPI ? (
     <>
@@ -195,57 +286,48 @@ const ShareDialogPicker = (props: ShareDialogProps) => {
       </div>
 
       <div className="ShareDialog__picker__button">
+        <div className="ShareDialog__picker__joinRole">
+          <button
+            type="button"
+            className={`ShareDialog__picker__joinRoleButton ${
+              defaultJoinRole === "viewer" ? "is-active" : ""
+            }`}
+            onClick={() => setDefaultJoinRole("viewer")}
+          >
+            {t("roomDialog.role_viewer")}
+          </button>
+          <button
+            type="button"
+            className={`ShareDialog__picker__joinRoleButton ${
+              defaultJoinRole === "editor" ? "is-active" : ""
+            }`}
+            onClick={() => setDefaultJoinRole("editor")}
+          >
+            {t("roomDialog.role_editor")}
+          </button>
+        </div>
         <FilledButton
           size="large"
           label={t("roomDialog.button_startSession")}
           icon={playerPlayIcon}
           onClick={() => {
             trackEvent("share", "room creation", `ui (${getFrame()})`);
-            collabAPI.startCollaboration(null);
+            collabAPI.startCollaboration(null, {
+              defaultJoinRole,
+            });
           }}
         />
       </div>
-
-      {props.type === "share" && (
-        <div className="ShareDialog__separator">
-          <span>{t("shareDialog.or")}</span>
-        </div>
-      )}
     </>
   ) : null;
-
-  return (
-    <>
-      {startCollabJSX}
-
-      {props.type === "share" && (
-        <>
-          <div className="ShareDialog__picker__header">
-            {t("exportDialog.link_title")}
-          </div>
-          <div className="ShareDialog__picker__description">
-            {t("exportDialog.link_details")}
-          </div>
-
-          <div className="ShareDialog__picker__button">
-            <FilledButton
-              size="large"
-              label={t("exportDialog.link_button")}
-              icon={LinkIcon}
-              onClick={async () => {
-                await props.onExportToBackend();
-                props.handleClose();
-              }}
-            />
-          </div>
-        </>
-      )}
-    </>
-  );
+  return <>{startCollabJSX}</>;
 };
 
 const ShareDialogInner = (props: ShareDialogProps) => {
   const activeRoomLink = useAtomValue(activeRoomLinkAtom);
+  const roomRole = useAtomValue(roomRoleAtom);
+  const roomDefaultJoinRole = useAtomValue(roomDefaultJoinRoleAtom);
+  useAtomValue(roomParticipantsAtom);
 
   return (
     <Dialog size="small" onCloseRequest={props.handleClose} title={false}>
@@ -255,6 +337,9 @@ const ShareDialogInner = (props: ShareDialogProps) => {
             collabAPI={props.collabAPI}
             activeRoomLink={activeRoomLink}
             handleClose={props.handleClose}
+            roomRole={roomRole}
+            defaultJoinRole={roomDefaultJoinRole}
+            participants={props.collabAPI.getRoomParticipants()}
           />
         ) : (
           <ShareDialogPicker {...props} />
@@ -264,10 +349,7 @@ const ShareDialogInner = (props: ShareDialogProps) => {
   );
 };
 
-export const ShareDialog = (props: {
-  collabAPI: CollabAPI | null;
-  onExportToBackend: OnExportToBackend;
-}) => {
+export const ShareDialog = (props: { collabAPI: CollabAPI | null }) => {
   const [shareDialogState, setShareDialogState] = useAtom(shareDialogStateAtom);
 
   const { openDialog } = useUIAppState();
@@ -286,7 +368,6 @@ export const ShareDialog = (props: {
     <ShareDialogInner
       handleClose={() => setShareDialogState({ isOpen: false })}
       collabAPI={props.collabAPI}
-      onExportToBackend={props.onExportToBackend}
       type={shareDialogState.type}
     />
   );

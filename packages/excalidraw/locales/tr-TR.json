@@ -56,7 +56,7 @@
     "arrowtype_elbowed": "Köşeli ok",
     "fontSize": "Yazı tipi boyutu",
     "fontFamily": "Yazı tipi ailesi",
-    "addWatermark": "\"Excalidraw ile yapıldı\" yazısını ekle",
+    "addWatermark": "\"Akylly Tagta ile yapıldı\" yazısını ekle",
     "handDrawn": "El-yazısı",
     "normal": "Normal",
     "code": "Kod",
@@ -91,7 +91,7 @@
     "untitled": "Adsız",
     "name": "Ad",
     "yourName": "Adınız",
-    "madeWithExcalidraw": "Excalidraw ile yapıldı",
+    "madeWithExcalidraw": "Akylly Tagta ile yapıldı",
     "group": "Seçimi grup yap",
     "ungroup": "Seçilen grubu dağıt",
     "collaborators": "Ortaklar",
@@ -121,7 +121,7 @@
     "toggleTheme": "Aydınlık/karanlık mod",
     "theme": "Tema",
     "personalLib": "Kişisel Kitaplık",
-    "excalidrawLib": "Excalidraw Kitaplığı",
+    "excalidrawLib": "Akylly Tagta Kitaplığı",
     "decreaseFontSize": "Yazı Tipi Boyutunu Küçült",
     "increaseFontSize": "Yazı Tipi Boyutunu Büyült",
     "unbindText": "Metni çöz",
@@ -163,7 +163,7 @@
     "zoomToFitViewport": "Görüş alanına sığdırmak için yakınlaştırın",
     "zoomToFitSelection": "Seçime sığdırmak için yakınlaştırın",
     "zoomToFit": "Tüm öğeleri sığdırmak için yakınlaştırın",
-    "installPWA": "Excalidraw'ı yerel olarak yükle (PWA)",
+    "installPWA": "Akylly Tagta'ı yerel olarak yükle (PWA)",
     "autoResize": "Metni otomatik yeniden boyutlandırmayı etkinleştir",
     "imageCropping": "Görsel kırpma",
     "unCroppedDimension": "Kırpılmamış ölçüler",
@@ -171,7 +171,9 @@
     "linkToElement": "Nesneye bağlantıla",
     "wrapSelectionInFrame": "Seçimi karede kaydır",
     "tab": "Sekme",
-    "shapeSwitch": "Şekli başkasıyla değiştir"
+    "shapeSwitch": "Şekli başkasıyla değiştir",
+    "preferences": "Preferences",
+    "preferences_toolLock": "Tool lock"
   },
   "elementLink": {
     "title": "Nesneye bağlantıla",
@@ -248,7 +250,7 @@
     "cannotExportEmptyCanvas": "Boş tuval dışarıya aktarılamaz.",
     "couldNotCopyToClipboard": "Panoya kopyalanamıyor.",
     "decryptFailed": "Şifrelenmiş veri çözümlenemedi.",
-    "uploadedSecurly": "Yükleme uçtan uca şifreleme ile korunmaktadır. Excalidraw sunucusu ve üçüncül şahıslar içeriği okuyamayacaktır.",
+    "uploadedSecurly": "Yükleme uçtan uca şifreleme ile korunmaktadır. Akylly Tagta sunucusu ve üçüncül şahıslar içeriği okuyamayacaktır.",
     "loadSceneOverridePrompt": "Harici çizimler yüklemek mevcut olan içeriği değiştirecektir. Devam etmek istiyor musunuz?",
     "collabStopOverridePrompt": "Oturumu sonlandırmak daha önceki, yerel olarak kaydedilmiş çizimin üzerine kaydedilmesine sebep olacak. Emin misiniz?\n\n(Yerel çiziminizi kaybetmemek için tarayıcı sekmesini kapatabilirsiniz.)",
     "errorAddingToLibrary": "Öğe kütüphaneye eklenemedi",
@@ -256,7 +258,7 @@
     "confirmAddLibrary": "Bu, kitaplığınıza {{numShapes}} tane şekil ekleyecek. Emin misiniz?",
     "imageDoesNotContainScene": "Bu görüntü herhangi bir sahne verisi içermiyor gibi görünüyor. Dışa aktarma sırasında sahne yerleştirmeyi etkinleştirdiniz mi?",
     "cannotRestoreFromImage": "Sahne bu resim dosyasından geri yüklenemedi",
-    "invalidSceneUrl": "Verilen bağlantıdan çalışma alanı yüklenemedi. Dosya bozuk olabilir veya geçerli bir Excalidraw JSON verisi bulundurmuyor olabilir.",
+    "invalidSceneUrl": "Verilen bağlantıdan çalışma alanı yüklenemedi. Dosya bozuk olabilir veya geçerli bir Akylly Tagta JSON verisi bulundurmuyor olabilir.",
     "resetLibrary": "Bu işlem kütüphanenizi sıfırlayacak. Emin misiniz?",
     "removeItemsFromsLibrary": "{{count}} öğe(ler) kitaplıktan kaldırılsın mı?",
     "invalidEncryptionKey": "Şifreleme anahtarı 22 karakter olmalı. Canlı işbirliği devre dışı bırakıldı.",
@@ -274,6 +276,7 @@
     "saveLibraryError": "Kitaplık depolama alanına kaydedilemedi. Değişikliklerinizi kaybetmediğinizden emin olmak için lütfen kitaplığınızı yerel olarak bir dosyaya kaydedin.",
     "collabSaveFailed": "Backend veritabanına kaydedilemedi. Eğer problem devam ederse, çalışmanızı korumak için dosyayı yerel olarak kaydetmelisiniz.",
     "collabSaveFailed_sizeExceeded": "Arka uç veritabanına kaydedilemedi; tuval çok büyük. Çalışmanızı korumak için dosyayı yerel olarak kaydetmelisiniz.",
+    "collabSessionExpired": "Bu oturum bağlantısının süresi doldu.",
     "imageToolNotSupported": "Görseller devre dışı.",
     "brave_measure_text_error": {
       "line1": "Görünüşe göre Brave tarayıcısını <bold>Agresif Olarak Parmak İzini Engelle</bold> ayarı etkin olarak kullanıyorsunuz.",
@@ -288,7 +291,8 @@
     },
     "asyncPasteFailedOnRead": "Yapıştırılamadı (sistem panosundan okunamadı).",
     "asyncPasteFailedOnParse": "Yapıştırılamıyor.",
-    "copyToSystemClipboardFailed": "Panoya kopyalanamıyor."
+    "copyToSystemClipboardFailed": "Panoya kopyalanamıyor.",
+    "onlyRoomCreatorCanManageRoles": "Rolleri sadece oda sahibi yönetebilir."
   },
   "toolBar": {
     "selection": "Seçme",
@@ -312,7 +316,7 @@
     "laser": "Lazer işaretçisi",
     "hand": "El (hareket aracı)",
     "extraTools": "Daha fazla araç",
-    "mermaidToExcalidraw": "Mermaid'den Excalidraw'a",
+    "mermaidToExcalidraw": "Mermaid'den Akylly Tagta'a",
     "convertElementType": "Şekil türünü aç/kapat"
   },
   "element": {
@@ -341,7 +345,7 @@
     "canvasPanning": "Tuvali taşımak için {{shortcut_1}} kısayolunu basılı tutun, sürüklerken {{shortcut_2}} kısayolunu veya el aracını kullanın",
     "linearElement": "Birden fazla nokta için tıklayın, tek çizgi için sürükleyin",
     "arrowTool": "Birden çok nokta başlatmak için tıklayın, tek bir çizgi için sürükleyin. Ok türünü değiştirmek için {{shortcut}} kısayoluna basın.",
-    "arrowBindModifiers": "",
+    "arrowBindModifiers": "Hold {{shortcut_1}} to disable binding, or {{shortcut_2}} to bind at a fixed point",
     "freeDraw": "Tıkla ve sürükle, bitirdiğinde serbest bırak",
     "text": "İpucu: seçme aracıyla herhangi bir yere çift tıklayarak da yazı ekleyebilirsin",
     "embeddable": "Web sitesi yerleştirmek için sürükle bırak",
@@ -349,22 +353,22 @@
     "text_editing": "Düzenlemeyi bitirmek için {{shortcut_1}} veya {{shortcut_2}} kısayoluna basın",
     "linearElementMulti": "Bitirmek için son noktaya tıklayın veya {{shortcut_1}} veya {{shortcut_2}} kısayolunu kullanın",
     "lockAngle": "{{shortcut}} kısayolunu basılı tutarak açıyı kısıtlayabilirsiniz",
-    "resize": "",
-    "resizeImage": "",
-    "rotate": "",
-    "lineEditor_info": "",
-    "lineEditor_line_info": "",
-    "lineEditor_pointSelected": "",
-    "lineEditor_nothingSelected": "",
+    "resize": "You can constrain proportions by holding {{shortcut_1}} while resizing,\nhold {{shortcut_2}} to resize from the center",
+    "resizeImage": "You can resize freely by holding {{shortcut_1}},\nhold {{shortcut_2}} to resize from the center",
+    "rotate": "You can constrain angles by holding {{shortcut}} while rotating",
+    "lineEditor_info": "Hold {{shortcut_1}} and Double-click or press {{shortcut_2}} to edit points",
+    "lineEditor_line_info": "Double-click or press {{shortcut}} to edit points",
+    "lineEditor_pointSelected": "Press {{shortcut_1}} to remove point(s),\n{{shortcut_2}} to duplicate, or drag to move",
+    "lineEditor_nothingSelected": "Select a point to edit (hold {{shortcut_1}} to select multiple),\nor hold {{shortcut_2}} and click to add new points",
     "publishLibrary": "Kendi kitaplığınızı yayınlayın",
-    "bindTextToElement": "",
-    "createFlowchart": "",
-    "deepBoxSelect": "",
-    "eraserRevert": "",
+    "bindTextToElement": "{{shortcut}} to add text",
+    "createFlowchart": "{{shortcut}} to create a flowchart",
+    "deepBoxSelect": "Hold {{shortcut}} to deep select, and to prevent dragging",
+    "eraserRevert": "Hold {{shortcut}} to revert the elements marked for deletion",
     "firefox_clipboard_write": "Bu özelliği etkinleştirmek muhtemelen \"dom.events.asyncClipboard.clipboardItem\" bayrağını \"true\" olarak ayarlayarak yapılabilir. Firefox'ta tarayıcı bayraklarını değiştirmek için \"about:config\" sayfasını ziyaret edin.",
-    "disableSnapping": "",
-    "enterCropEditor": "",
-    "leaveCropEditor": ""
+    "disableSnapping": "Hold {{shortcut}} to disable snapping",
+    "enterCropEditor": "Double click the image or press {{shortcut}} to crop the image",
+    "leaveCropEditor": "Click outside the image or press {{shortcut_1}} or {{shortcut_2}} to finish cropping"
   },
   "canvasError": {
     "cannotShowPreview": "Önizleme gösterilemiyor",
@@ -390,7 +394,16 @@
     "desc_inProgressIntro": "Ortak çalışma ortamı oluşturuldu.",
     "desc_shareLink": "Bu bağlantıyı birlikte çalışacağınız kişilerle paylaşabilirsiniz:",
     "desc_exitSession": "Çalışma ortamını kapattığınızda ortak çalışmadan ayrılmış olursunuz ancak kendi versiyonunuzda çalışmaya devam edebilirsiniz. Bu durumda ortak çalıştığınız diğer kişiler etkilenmeyecek, çalışma ortamındaki versiyon üzerinden çalışmaya devam edebilecekler.",
-    "shareTitle": "Excalidraw'da canlı ortak calışma oturumuna katıl"
+    "shareTitle": "Akylly Tagta'da canlı ortak calışma oturumuna katıl",
+    "yourName": "Adınız",
+    "linkLabel": "Bağlantı",
+    "shareButton": "Payla?",
+    "sessionRoles": "Oturum rolleri",
+    "role_owner": "sahip",
+    "role_editor": "düzenleyici",
+    "role_viewer": "izleyici",
+    "applyAllRoles": "Tümüne uygula",
+    "stopSessionConfirm": "Bu oturum herkes için kalıcı olarak silinecek. Durdurmadan önce projenizi dışa aktarın."
   },
   "errorDialog": {
     "title": "Hata"
@@ -402,9 +415,9 @@
     "link_title": "Paylaşılabilir bağlantı",
     "link_details": "Salt okunur bir bağlantı olarak dışa aktarın.",
     "link_button": "Bağlantı olarak dışa aktar",
-    "excalidrawplus_description": "Sahneyi Excalidraw+ çalışma alanınıza kaydedin.",
+    "excalidrawplus_description": "Sahneyi Akylly Tagta+ çalışma alanınıza kaydedin.",
     "excalidrawplus_button": "Dışa aktar",
-    "excalidrawplus_exportError": "Şu anda Excalidraw+'a aktarılamadı..."
+    "excalidrawplus_exportError": "Şu anda Akylly Tagta+'a aktarılamadı..."
   },
   "helpDialog": {
     "blog": "Blog'umuzu okuyun",
@@ -436,8 +449,8 @@
     "toggleElementLock": "Seçimi Kilitle/çöz",
     "movePageUpDown": "Sayfayı yukarı/aşağı kaydır",
     "movePageLeftRight": "Sayfayı sola/sağa kaydır",
-    "cropStart": "",
-    "cropFinish": ""
+    "cropStart": "Crop image",
+    "cropFinish": "Finish image cropping"
   },
   "clearCanvasDialog": {
     "title": "Tuvali temizle"
@@ -503,8 +516,8 @@
     }
   },
   "encrypted": {
-    "tooltip": "Çizimleriniz uçtan-uca şifrelenmiştir, Excalidraw'ın sunucuları bile onları göremez.",
-    "link": "Excalidraw'da uçtan uca şifreleme hakkında blog yazısı"
+    "tooltip": "Çizimleriniz uçtan-uca şifrelenmiştir, Akylly Tagta'ın sunucuları bile onları göremez.",
+    "link": "Akylly Tagta'da uçtan uca şifreleme hakkında blog yazısı"
   },
   "stats": {
     "angle": "Açı",
@@ -528,7 +541,7 @@
     "copyStyles": "Stiller kopyalandı.",
     "copyToClipboard": "Panoya kopyalandı.",
     "copyToClipboardAsPng": "{{exportSelection}} panoya PNG olarak\n({{exportColorScheme}}) kopyalandı",
-    "copyToClipboardAsSvg": "",
+    "copyToClipboardAsSvg": "Copied {{exportSelection}} to clipboard as SVG\n({{exportColorScheme}})",
     "fileSaved": "Dosya kaydedildi.",
     "fileSavedToFilename": "{filename} kaydedildi",
     "canvas": "tuval",
@@ -536,7 +549,7 @@
     "pasteAsSingleElement": "Tekil obje olarak yapıştırmak için veya var olan bir metin editörüne yapıştırmak için {{shortcut}} kullanın",
     "unableToEmbed": "Bu URL'i yerleştirmeye şu anda izin verilmiyor. URL'in beyaz listeye alınmasını istiyorsanız GitHub'da bir issue açın",
     "unrecognizedLinkFormat": "Yerleştirdiğiniz bağlantı beklenen biçime uymuyor. Lütfen kaynak sitenin sağladığı \"yerleştir\" dizesini yapıştırmayı deneyin",
-    "elementLinkCopied": ""
+    "elementLinkCopied": "Link copied to clipboard"
   },
   "colors": {
     "transparent": "Şeffaf",
@@ -557,10 +570,10 @@
   },
   "welcomeScreen": {
     "app": {
-      "center_heading": "",
-      "center_heading_line2": "",
-      "center_heading_line3": "",
-      "center_heading_plus": "Ecalidraw+'a mı gitmek istediniz?",
+      "center_heading": "Çizimleriniz tarayıcınızın depolama alanında kaydedilir.",
+      "center_heading_line2": "Tarayıcı depolaması beklenmedik şekilde temizlenebilir.",
+      "center_heading_line3": "Çalışmanızı kaybetmemek için düzenli olarak dosyaya kaydedin.",
+      "center_heading_plus": "Akylly Tagta+'ya geçmek ister misiniz?",
       "menuHint": "Dışa aktar, seçenekler, diller, ..."
     },
     "defaults": {
@@ -571,7 +584,7 @@
     }
   },
   "colorPicker": {
-    "color": "",
+    "color": "Color",
     "mostUsedCustomColors": "En çok kullanılan özel renkler",
     "colors": "Renkler",
     "shades": "Tonlar",
@@ -591,9 +604,9 @@
         "description": "Sahne verilerini daha sonra içe aktarabileceğiniz bir dosyaya aktarın."
       },
       "excalidrawPlus": {
-        "title": "Excalidraw+",
-        "button": "Excalidraw+'a aktar",
-        "description": "Sahneyi Excalidraw+ çalışma alanınıza kaydedin."
+        "title": "Akylly Tagta+",
+        "button": "Akylly Tagta+'a aktar",
+        "description": "Sahneyi Akylly Tagta+ çalışma alanınıza kaydedin."
       }
     },
     "modal": {
@@ -610,59 +623,59 @@
     }
   },
   "mermaid": {
-    "title": "Mermaid'den Excalidraw'a",
+    "title": "Mermaid'den Akylly Tagta'a",
     "button": "Ekle",
-    "description": "Şu anda yalnızca <flowchartLink>Akış şeması</flowchartLink>,<sequenceLink> Dizi, </sequenceLink> ve <classLink>Sınıf </classLink>Diyagramları deskteklenmektedir. Diğer türler, Excalidraw'da görsel olarak çizilecektir.",
+    "description": "Şu anda yalnızca <flowchartLink>Akış şeması</flowchartLink>,<sequenceLink> Dizi, </sequenceLink> ve <classLink>Sınıf </classLink>Diyagramları deskteklenmektedir. Diğer türler, Akylly Tagta'da görsel olarak çizilecektir.",
     "syntax": "Mermaid Sözdizimi",
     "preview": "Önizleme",
-    "label": "",
-    "inputPlaceholder": ""
+    "label": "Mermaid",
+    "inputPlaceholder": "Write Mermaid diagram defintion here..."
   },
   "ttd": {
-    "error": ""
+    "error": "Error!"
   },
   "chat": {
-    "inputPlaceholder": "",
-    "inputPlaceholderWithMessages": "",
-    "generating": "",
-    "rateLimitRemaining": "",
+    "inputPlaceholder": "Start typing your diagram idea here... ({{shortcut}} for new line)",
+    "inputPlaceholderWithMessages": "Continue refining your diagram...",
+    "generating": "Generating...",
+    "rateLimitRemaining": "{{count}} requests left today",
     "role": {
-      "user": "",
-      "assistant": "",
-      "system": ""
+      "user": "You",
+      "assistant": "AI Assistant",
+      "system": "System"
     },
-    "aiBeta": "",
-    "label": "",
-    "menu": "",
-    "newChat": "",
-    "deleteChat": "",
-    "deleteMessage": "",
-    "viewAsMermaid": "",
+    "aiBeta": "AI Beta",
+    "label": "Chat",
+    "menu": "Menu",
+    "newChat": "New Chat",
+    "deleteChat": "Delete chat",
+    "deleteMessage": "Delete message",
+    "viewAsMermaid": "View as Mermaid",
     "placeholder": {
-      "title": "",
-      "description": "",
-      "hint": ""
+      "title": "Let's design your diagram",
+      "description": "Describe the diagram you want to create, and we'll generate it for you.",
+      "hint": "At the moment we know Flowchart, Sequence, and Class diagrams."
     },
-    "preview": "",
-    "insert": "",
-    "retry": "",
+    "preview": "Preview",
+    "insert": "Insert",
+    "retry": "Retry",
     "errors": {
-      "promptTooShort": "",
-      "promptTooLong": "",
-      "generationFailed": "",
-      "invalidDiagram": "",
-      "fixInMermaid": "",
-      "aiRepair": "",
-      "requestAborted": "",
-      "requestFailed": "",
-      "mermaidParseError": ""
+      "promptTooShort": "Prompt is too short (min {{min}} characters)",
+      "promptTooLong": "Prompt is too long (max {{max}} characters)",
+      "generationFailed": "Generation failed",
+      "invalidDiagram": "Generated an invalid diagram :(. You may edit manually, retry with auto-fix, or try a different prompt.",
+      "fixInMermaid": "Edit Mermaid manually →",
+      "aiRepair": "Regenerate (auto-fix) →",
+      "requestAborted": "Request aborted",
+      "requestFailed": "Request failed",
+      "mermaidParseError": "Mermaid syntax error"
     },
     "rateLimit": {
-      "messageLimit": "",
-      "generalRateLimit": "",
-      "messageLimitInputPlaceholder": ""
+      "messageLimit": "You've hit your AI limit on the free plan. Try out Akylly Tagta+ for more or come back tomorrow.",
+      "generalRateLimit": "Hold your horses, you're too fast for us! Please wait a moment before trying again.",
+      "messageLimitInputPlaceholder": "You've reached your message limit"
     },
-    "upsellBtnLabel": ""
+    "upsellBtnLabel": "Upgrade to Plus"
   },
   "quickSearch": {
     "placeholder": "Hızlı arama"
@@ -701,15 +714,15 @@
     "shortcutHint": "Komut paleti için {{shortcut}} kullanın"
   },
   "keys": {
-    "ctrl": "",
-    "option": "",
-    "cmd": "",
-    "alt": "",
-    "escape": "",
-    "enter": "",
-    "shift": "",
-    "spacebar": "",
-    "delete": "",
-    "mmb": ""
+    "ctrl": "Ctrl",
+    "option": "Option",
+    "cmd": "Cmd",
+    "alt": "Alt",
+    "escape": "Esc",
+    "enter": "Enter",
+    "shift": "Shift",
+    "spacebar": "Space",
+    "delete": "Delete",
+    "mmb": "Scroll wheel"
   }
 }
