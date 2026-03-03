@@ -14,7 +14,7 @@ import { elementsAreInSameGroup } from "@excalidraw/element";
 
 import type { NonDeletedExcalidrawElement } from "@excalidraw/element/types";
 
-import { t } from "../../i18n";
+import { useI18n } from "../../i18n";
 import { isGridModeEnabled } from "../../snapping";
 import { useExcalidrawAppState, useExcalidrawSetAppState } from "../App";
 import { Island } from "../Island";
@@ -127,6 +127,7 @@ export const StatsInner = memo(
     appState: AppState;
     gridModeEnabled: boolean;
   }) => {
+    const { t } = useI18n();
     const scene = app.scene;
     const elements = scene.getNonDeletedElements();
     const elementsMap = scene.getNonDeletedElementsMap();
@@ -222,7 +223,7 @@ export const StatsInner = memo(
               </StatsRow>
               {gridModeEnabled && (
                 <>
-                  <StatsRow heading>Canvas</StatsRow>
+                  <StatsRow heading>{t("labels.drawingCanvas")}</StatsRow>
                   <StatsRow>
                     <CanvasGrid
                       property="gridStep"

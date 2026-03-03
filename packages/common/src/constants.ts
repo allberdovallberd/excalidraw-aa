@@ -252,6 +252,7 @@ export const STRING_MIME_TYPES = {
   json: "application/json",
   // excalidraw data
   excalidraw: "application/vnd.excalidraw+json",
+  akyllytagta: "application/vnd.excalidraw+json",
   excalidrawClipboard: "application/vnd.excalidraw.clipboard+json",
   // LEGACY: fully-qualified library JSON data
   excalidrawlib: "application/vnd.excalidrawlib+json",
@@ -264,6 +265,8 @@ export const MIME_TYPES = {
   // image-encoded excalidraw data
   "excalidraw.svg": "image/svg+xml",
   "excalidraw.png": "image/png",
+  "akyllytagta.svg": "image/svg+xml",
+  "akyllytagta.png": "image/png",
   // binary
   binary: "application/octet-stream",
   // image

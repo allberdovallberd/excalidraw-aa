@@ -242,7 +242,7 @@ export default defineConfig(({ mode }) => {
             {
               action: "/",
               accept: {
-                "application/vnd.excalidraw+json": [".excalidraw"],
+                "application/vnd.excalidraw+json": [".akyllytagta"],
               },
             },
           ],
@@ -257,7 +257,7 @@ export default defineConfig(({ mode }) => {
                   accept: [
                     "application/vnd.excalidraw+json",
                     "application/json",
-                    ".excalidraw",
+                    ".akyllytagta",
                   ],
                 },
               ],

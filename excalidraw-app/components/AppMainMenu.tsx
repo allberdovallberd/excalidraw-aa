@@ -1,4 +1,5 @@
 import { eyeIcon } from "@excalidraw/excalidraw/components/icons";
+import { t } from "@excalidraw/excalidraw/i18n";
 import { MainMenu } from "@excalidraw/excalidraw/index";
 import React from "react";
 
@@ -47,7 +48,7 @@ export const AppMainMenu: React.FC<{
             props?.refresh();
           }}
         >
-          Visual Debug
+          {t("labels.visualDebug")}
         </MainMenu.Item>
       )}
       <MainMenu.Separator />

@@ -173,7 +173,8 @@
     "tab": "Sekme",
     "shapeSwitch": "Şekli başkasıyla değiştir",
     "preferences": "Preferences",
-    "preferences_toolLock": "Tool lock"
+    "preferences_toolLock": "Tool lock",
+    "visualDebug": "Görsel hata ayıklama"
   },
   "elementLink": {
     "title": "Nesneye bağlantıla",

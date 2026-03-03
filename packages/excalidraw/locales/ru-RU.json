@@ -173,7 +173,8 @@
     "tab": "Вкладка",
     "shapeSwitch": "Сменить форму",
     "preferences": "Preferences",
-    "preferences_toolLock": "Tool lock"
+    "preferences_toolLock": "Tool lock",
+    "visualDebug": "Визуальная отладка"
   },
   "elementLink": {
     "title": "Ссылка на объект",

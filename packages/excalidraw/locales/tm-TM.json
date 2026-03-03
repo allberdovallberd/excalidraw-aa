@@ -1,11 +1,11 @@
-{
+﻿{
   "labels": {
     "paste": "Goýmak",
     "pasteAsPlaintext": "Adaty tekst hökmünde goýmak",
     "pasteCharts": "Diagrammalary goýmak",
     "selectAll": "Hemmesini saýlamak",
     "multiSelect": "Saýlanan elemente fragment goşmak",
-    "moveCanvas": "Kanwany süýşürmek",
+    "moveCanvas": "Tagtany süýşürmek",
     "cut": "Kesmek",
     "copy": "Göçürip almak",
     "copyAsPng": "PNG görnüşinde alyş-çalyş buferine göçürip almak",
@@ -69,9 +69,9 @@
     "cartoonist": "Karikaturaçy",
     "fileTitle": "Faýlyň ady",
     "colorPicker": "Reňk saýlawy",
-    "canvasColors": "Kanwada ulanylýar",
-    "canvasBackground": "Kanwanyň fony",
-    "drawingCanvas": "Kanwa",
+    "canvasColors": "Tagtada ulanylýar",
+    "canvasBackground": "Tagtanyň fony",
+    "drawingCanvas": "Tagta",
     "layers": "Gatlaklar",
     "actions": "Hereketler",
     "language": "Dil",
@@ -139,7 +139,7 @@
     "sidebarLock": "Gapdal paneli açyk saklamak",
     "selectAllElementsInFrame": "Çarçuwanyň içindäki ähli elementleri saýlamak",
     "removeAllElementsFromFrame": "Çarçuwanyň içindäki ähli elementleri aýyrmak",
-    "eyeDropper": "Kanwadan reňkiň nusgasyny almak",
+    "eyeDropper": "Tagtadan reňkiň nusgasyny almak",
     "textToDiagram": "Diagrammanyň teksti",
     "prompt": "Sorag",
     "changeStroke": "Konturyň reňkini üýtgetmek",
@@ -152,7 +152,7 @@
     "arrowtype_sharp": "Çüňkli ok",
     "arrowtype_round": "Egrilen ok",
     "arrowtype_elbowed": "Burçly ok",
-    "clearCanvas": "Kanwany arassalamak",
+    "clearCanvas": "Tagtany arassalamak",
     "toggleGrid": "Tory açmak/ýapmak",
     "loadScene": "Sahnany faýyldan ýükläp almak",
     "showFonts": "Şrift saýlaýjyny görkezmek",
@@ -173,6 +173,7 @@
     "shapeSwitch": "Şekil görnüşini üýtgetmek",
     "preferences": "Sazlamalar",
     "preferences_toolLock": "Gural gulpy",
+    "visualDebug": "Wizual sazlaýyş",
     "polygon": {
       "breakPolygon": "Poligony bölmek",
       "convertToPolygon": "Poligona öwürmek"
@@ -180,8 +181,8 @@
   },
   "library": {
     "noItems": "Entek hiç zat goşulmady...",
-    "hint_emptyLibrary": "Bu ýere goşmak üçin kanwadan bir obýekti saýlaň ýa-da aşakdaky köpçülikleýin ammardan kitaphanany guruň.",
-    "hint_emptyPrivateLibrary": "Şu ýere goşmak üçin kanwadaky obýekti saýlaň.",
+    "hint_emptyLibrary": "Bu ýere goşmak üçin tagtadan bir obýekti saýlaň ýa-da aşakdaky köpçülikleýin ammardan kitaphanany guruň.",
+    "hint_emptyPrivateLibrary": "Şu ýere goşmak üçin tagtadaky obýekti saýlaň.",
     "search": {
       "inputPlaceholder": "Kitaphanada gözleg",
       "heading": "Kitaphana gabat gelýänler",
@@ -190,7 +191,7 @@
     }
   },
   "buttons": {
-    "clearReset": "Kanwany arassalamak we fonuň reňkini başlangyç ýagdaýa getirmek",
+    "clearReset": "Tagtany arassalamak we fonuň reňkini başlangyç ýagdaýa getirmek",
     "exportJSON": "Ýatda saklamak",
     "exportImage": "Şekili eksport etmek...",
     "export": "Başgaça saklamak...",
@@ -215,7 +216,7 @@
     "fullScreen": "Doly ekran",
     "darkMode": "Garaňky tema",
     "lightMode": "Ýagty tema",
-    "zenMode": "Zen tertibi",
+    "zenMode": "Boşluk tertibi",
     "objectsSnapMode": "Obýekte baglamak",
     "exitZenMode": "Konsentrasiýa tertibini öçürmek",
     "cancel": "Ýatyrmak",
@@ -231,12 +232,12 @@
     "saveLibNames": "At(lar)y sakla we çyk"
   },
   "alerts": {
-    "clearReset": "Bu bolsa tutuş kanwany arassalaýar. Siz razymy?",
+    "clearReset": "Bu bolsa tutuş tagtany arassalaýar. Siz razymy?",
     "couldNotCreateShareableLink": "Jemgyýetçilik baglanyşygy döredip bolmady.",
     "couldNotCreateShareableLinkTooBig": "Paýlaşmak üçin baglanyşyk döredip bolmaýar. Sahna gaty uludyr",
     "couldNotLoadInvalidFile": "Nädogry faýly göçürip alyp bolmady",
     "importBackendFailed": "Backend-den import edip bolmady.",
-    "cannotExportEmptyCanvas": "Boş kanwalary eksport edip bolmaýar.",
+    "cannotExportEmptyCanvas": "Boş tagtalary eksport edip bolmaýar.",
     "couldNotCopyToClipboard": "Alyş-çalyş buferine göçürip alyp bolmady",
     "decryptFailed": "Maglumatlary şifrden açyp bolmady.",
     "uploadedSecurly": "Ýüklenýän maglumatlar ahyrky şifrlemek arkaly goralýar, bu bolsa Excalidraw serweriniň we üçünji taraplaryň mazmuny okap bilmejekdigini aňladýar.",
@@ -264,7 +265,7 @@
     "cannotResolveCollabServer": "Bilelikde redaktirlemek serwerine birigip bolmady. Sahypany täzeden açyň we gaýtadan synanşyp görüň.",
     "importLibraryError": "Kitaphanany ýükläp bolmady",
     "collabSaveFailed": "Maglumat binýadynda ýatda saklap bolmady. Mesele gaýtalansa, işiňizi ýitirmejekdigiňize göz ýetirmek üçin faýly ýerli saklamaly bolarsyňyz.",
-    "collabSaveFailed_sizeExceeded": "Maglumat binýadynda ýatda saklap bolmady. Kanwa gaty uly. Mesele gaýtalansa, işiňizi ýitirmejekdigiňize göz ýetirmek üçin faýly ýerli saklamaly bolarsyňyz.",
+    "collabSaveFailed_sizeExceeded": "Maglumat binýadynda ýatda saklap bolmady. Tagta gaty uly. Mesele gaýtalansa, işiňizi ýitirmejekdigiňize göz ýetirmek üçin faýly ýerli saklamaly bolarsyňyz.",
     "imageToolNotSupported": "Suratlar öçürildi.",
     "brave_measure_text_error": {
       "line1": "<bold>Yzarmalak agressiw ýagdaýda blokirlenen</bold> opsiýasy açyk bolan Brave brauzerini ulanýan ýaly görünýäňiz.",
@@ -303,7 +304,7 @@
     "magicframe": "Çyzgyny koda öwürmek",
     "embeddable": "Web goýma",
     "laser": "Lazer görkezijisi",
-    "hand": "El (kanwany süýşürmek)",
+    "hand": "El (tagtany süýşürmek)",
     "extraTools": "Goşmaça gurallar",
     "mermaidToExcalidraw": "Mermaid-den Akylly Tagta-a",
     "magicSettings": "AI parametrleri",
@@ -311,12 +312,12 @@
     "convertElementType": "Şekil görnüşini üýtgetmek"
   },
   "headings": {
-    "canvasActions": "Kanwanyň amallary",
+    "canvasActions": "Tagtanyň amallary",
     "selectedShapeActions": "Saýlanan şekil amallary",
     "shapes": "Şekiller"
   },
   "hints": {
-    "canvasPanning": "Kanwany herekete getirmek üçin süýşireniňizde syçanjygyň tigirini ýa-da boşluk panelini basyp saklaň ýa-da \"El\" guralyny ulanyň",
+    "canvasPanning": "Tagtany herekete getirmek üçin süýşireniňizde syçanjygyň tigirini ýa-da boşluk panelini basyp saklaň ýa-da \"El\" guralyny ulanyň",
     "linearElement": "Birnäçe nokady başlamak üçin basyň, bir setir üçin süýşiriň",
     "freeDraw": "Basyň we süýşiriň, tamamlanandan soň goýberiň",
     "text": "Maslahat: Saýlama guralynda teksti goşmak üçin islendik ýere iki gezek basyň",
@@ -334,7 +335,7 @@
     "placeImage": "Suraty ýerleşdirmek üçin basyň ýa-da el bilen ululygyny kesgitlemek üçin süýşiriň",
     "publishLibrary": "Öz şahsy kitaphanaňyzy çap etmek",
     "bindTextToElement": "Teksti goşmak üçin Enter düwmäni basyň",
-    "deepBoxSelect": "Süýremeginiň öňüni almak üçin Ctrl ýa-da Cmd dümelerini basyp saklaň",
+    "deepBoxSelect": "Süýşmeginiň öňüni almak üçin Ctrl ýa-da Cmd dümelerini basyp saklaň",
     "eraserRevert": "Öçürmek üçin, bellenen elementleri yzyna gaýtarmak üçin Alt düwmesini basyp saklaň",
     "firefox_clipboard_write": "Bu aýratynlyk, baýdagyň bahasyny \"dom.events.asyncClipboard.clipboardItem\" \"true\"-e üýtgetmek arkaly işledilip bilner. Firefox-da brauzer baýdaklaryny üýtgetmek üçin \"about:config\" sahypasyna geçiň..",
     "disableSnapping": "Ýelmeşmegi öçürmek üçin {{shortcut}} basyp saklaň",
@@ -353,21 +354,21 @@
   },
   "errorSplash": {
     "headingMain": "Näsazlyk ýüze çykdy. Sahypany <button>täzeden açmaga synanyşyň</button>.",
-    "clearCanvasMessage": "Sahypany täzeden açmak kömek etmese, <button>kanwany arassalamaga</button> synanyşyň.",
+    "clearCanvasMessage": "Sahypany täzeden açmak kömek etmese, <button>tagtany arassalamaga</button> synanyşyň.",
     "clearCanvasCaveat": " Häzirki iş ýitiriler ",
     "trackedToSentry": "Ulgamymyzda {{eventId}} kesgitleýji bilen ýalňyşlyk yzarlanýar.",
-    "openIssueMessage": "Howpsuzlyk sebäpli, sahna maglumatlaryňyz ýalňyşlyga goşulmaýar. Eger sahnada hiç hili gizlin zat ýok bolsa, <button>ýalňyş yzarlaýjymyzy</button> yzarlaň. Maglumaty GitHub \"issue\"-a  göçürip we goýmagyňyzy haýyş edýäris.",
+    "openIssueMessage": "Howpsuzlyk sebäpli, sahna maglumatlaryňyz ýalňyşlyga goşulmaýar. Eger sahnada hiç hili gizlin zat ýok bolsa, <button>ýalňyş yzarlaýjymyzy</button> yzarlaň. Maglumaty GitHub \"issue\"-a  göçürip we goýmagyňyzy Haýyşt edýäris.",
     "sceneContent": "Sahnanyň mazmuny:"
   },
   "roomDialog": {
-    "desc_intro": "Adamlary bilelikde işlemek üçin häzirki sahna çagyryp bilersiňiz.",
-    "desc_privacy": "Alada etmäň - seansda ahyrky şifrlemek ulanylýar. Çeken zatlaryňyzyň hemmesi gizlin bolar we hatda serwerimize-de elýeterli bolmaz.",
+    "desc_intro": "Bilelikde işlemek üçin başgalary häzirki sahna çagyryp bilersiňiz.",
+    "desc_privacy": "Alada etmäň - sessiýada ahyrky şifrlemek ulanylýar. Çeken zatlaryňyzyň ählisi gizlindir we hatda serwerimize-de elýeterli bolmaz.",
     "button_startSession": "Sessiýa başlamak",
     "button_stopSession": "Sessiýany tamamlamak",
     "desc_inProgressIntro": "Bilelikdäki iş sessiýasy başlandy.",
     "desc_shareLink": "Bu baglanyşygy ähli gatnaşyjylar bilen paýlaşyň:",
-    "desc_exitSession": "Sessiýa tamamlanandan soň otagdan çykarsyňyz, ýöne resminamany ýerli ýagdaýda dowam etdirip bilersiňiz. Bu beýleki ulanyjylaryň işine täsir etmez - olar resminamanyň olaryň wersiýasy bilen bilelikde işlemegi dowam etdirip bilerler.",
-    "shareTitle": "Akylly Tagta-da işjeň hyzmatdaşlyga gatnaşyň",
+    "desc_exitSession": "Sessiýa tamamlanyp, otagdan çykaňyzdan soň, işiňizi ýerli ýagdaýda dowam etdirip bilersiňiz. Bu beýleki ulanyjylaryň işine täsir etmez.",
+    "shareTitle": "Akylly Tagta-da bilelikde işläň",
     "yourName": "Siziň adyňyz",
     "linkLabel": "Baglanyşyk",
     "shareButton": "Paýlaşmak",
@@ -375,7 +376,7 @@
     "role_owner": "eýesi",
     "role_editor": "redaktor",
     "role_viewer": "görüji",
-    "applyAllRoles": "Hemmesine ulanmak",
+    "applyAllRoles": "Hemmesinde üýtget",
     "stopSessionConfirm": "Bu sessiýa hemmeler üçin hemişelik pozular. Durdurmazdan öň taslamaňyzy eksport ediň."
   },
   "errorDialog": {
@@ -410,7 +411,7 @@
     "or": "ýa-da",
     "preventBinding": "Oklaryň baglanyşygynyň öňüni al",
     "tools": "Gurallar",
-    "shortcuts": "Gyzgyn düwmeler",
+    "shortcuts": "Gysga ýollar",
     "textFinish": "Redaktirlemegi tamamlamak (tekst redaktory)",
     "textNewLine": "Täze setir goşmak (tekst redaktory)",
     "title": "Kömek",
@@ -426,7 +427,7 @@
     "cropFinish": "Surat kesmegini tamamlamak"
   },
   "clearCanvasDialog": {
-    "title": "Kanwany arassalamak"
+    "title": "Tagtany arassalamak"
   },
   "publishDialog": {
     "title": "Kitaphanany çap etmek",
@@ -497,17 +498,17 @@
     "element": "Element",
     "elements": "Elementlar",
     "height": "Beýiklik",
-    "scene": "Sahnalar",
+    "scene": "Görnüş",
     "selected": "saýlanan",
     "storage": "Ýatda saklaýyş ammary",
-    "title": "Botanikler üçin statistika",
+    "title": "Statistika",
     "total": "Jemi",
     "version": "Wersiýa",
     "versionCopy": "Göçürip almak",
     "versionNotAvailable": "Wersiýa elýeterli däl",
     "width": "Giňlik",
     "shapes": "Şekiller",
-    "fullTitle": "Kanwa we şekil häsiýetleri",
+    "fullTitle": "Tagta we şekil häsiýetleri",
     "generalStats": "Umumy",
     "elementProperties": "Şekil häsiýetleri"
   },
@@ -518,7 +519,7 @@
     "copyToClipboardAsPng": "{{exportSelection}} PNG görnüşde göçirip alnan ({{exportColorScheme}})",
     "fileSaved": "Faýl ýatda saklandy",
     "fileSavedToFilename": "{filename} ýatda saklandy",
-    "canvas": "kanwa",
+    "canvas": "tagta",
     "selection": "saýlamak",
     "pasteAsSingleElement": "Bir obýekti goýmak üçin {{shortcut}} ulanyň,\nýa-da bar bolan tekst redaktoryna goýuň",
     "unableToEmbed": "Bu URL-ni goýmak häzirlikçe rugsat edilmeýär. GitHub-da issue açyp, bu URL-i rugsatly sanawa goşmagy sorap bilersiňiz.",
@@ -608,15 +609,15 @@
   },
   "elementLink": {
     "title": "Obýekte baglanyşyk",
-    "desc": "Kanwadaky bir şekile basyň ýa-da baglanyşyk goýuň.",
-    "notFound": "Baglanan obýekt kanwada tapylmady."
+    "desc": "Tagtadaky bir şekile basyň ýa-da baglanyşyk goýuň.",
+    "notFound": "Baglanan obýekt tagtada tapylmady."
   },
   "search": {
-    "title": "Kanwada gözlemek",
+    "title": "Tagtada gözlemek",
     "noMatch": "Gabat gelýän zat tapylmady...",
     "singleResult": "netije",
     "multipleResults": "netije",
-    "placeholder": "Kanwadaky teksti gözläň...",
+    "placeholder": "Tagtadaky teksti gözläň...",
     "frames": "Çarçuwalar",
     "texts": "Tekstler"
   },
@@ -646,7 +647,7 @@
     "inputPlaceholder": "Diagramma pikirleriňizi şu ýerden ýazyp başlaň... (täze setir üçin {{shortcut}})",
     "inputPlaceholderWithMessages": "Diagrammaňyzy takyklamagy dowam ediň...",
     "generating": "Döredilýär...",
-    "rateLimitRemaining": "Bu gün galan haýyş: {{count}}",
+    "rateLimitRemaining": "Bu gün galan Haýyşt: {{count}}",
     "role": {
       "user": "Siz",
       "assistant": "AI kömekçi",
@@ -674,8 +675,8 @@
       "invalidDiagram": "Nädogry diagramma döredildi :(. El bilen düzedip, auto-fix bilen gaýtadan synanyşyp ýa-da başga sorag berip bilersiňiz.",
       "fixInMermaid": "Mermaid-de el bilen düzetmek →",
       "aiRepair": "Gaýtadan döretmek (awto-düzediş) →",
-      "requestAborted": "Haýyş ýatyryldy",
-      "requestFailed": "Haýyş başa barmady",
+      "requestAborted": "Haýyştt ýatyryldy",
+      "requestFailed": "Haýyştt başa barmady",
       "mermaidParseError": "Mermaid sintaksis ýalňyşlygy"
     },
     "rateLimit": {
@@ -694,7 +695,7 @@
     },
     "sceneFonts": "Bu sahnadaky ?riftler",
     "availableFonts": "Elýeterli şriftler",
-    "empty": "?rift tapylmady"
+    "empty": "Şrift tapylmady"
   },
   "userList": {
     "empty": "Ulanyjy tapylmady",
@@ -711,7 +712,7 @@
     "shortcuts": {
       "select": "Saýlamak",
       "confirm": "Tassyklamak",
-      "close": "?apmak"
+      "close": "Ýapmak"
     },
     "recents": "Soňky ulanylanlar",
     "search": {
@@ -729,7 +730,7 @@
     "escape": "Esc",
     "enter": "Enter",
     "shift": "Shift",
-    "spacebar": "Boşluk",
+    "spacebar": "Space",
     "delete": "Delete",
     "mmb": "Tigir düwmesi"
   }

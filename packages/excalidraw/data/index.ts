@@ -144,7 +144,7 @@ export const exportCanvas = async (
         {
           description: "Export to SVG",
           name,
-          extension: appState.exportEmbedScene ? "excalidraw.svg" : "svg",
+          extension: appState.exportEmbedScene ? "akyllytagta.svg" : "svg",
           mimeTypes: [IMAGE_MIME_TYPES.svg],
           fileHandle,
         },
@@ -184,7 +184,7 @@ export const exportCanvas = async (
     return fileSave(blob, {
       description: "Export to PNG",
       name,
-      extension: appState.exportEmbedScene ? "excalidraw.png" : "png",
+      extension: appState.exportEmbedScene ? "akyllytagta.png" : "png",
       mimeTypes: [IMAGE_MIME_TYPES.png],
       fileHandle,
     });

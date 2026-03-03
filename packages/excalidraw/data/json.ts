@@ -81,8 +81,8 @@ export const saveAsJSON = async (
 
   const fileHandle = await fileSave(blob, {
     name,
-    extension: "excalidraw",
-    description: "Excalidraw file",
+    extension: "akyllytagta",
+    description: "Akylly Tagta file",
     fileHandle: isImageFileHandle(appState.fileHandle)
       ? null
       : appState.fileHandle,
@@ -95,10 +95,10 @@ export const loadFromJSON = async (
   localElements: readonly ExcalidrawElement[] | null,
 ) => {
   const file = await fileOpen({
-    description: "Excalidraw files",
+    description: "Akylly Tagta files",
     // ToDo: Be over-permissive until https://bugs.webkit.org/show_bug.cgi?id=34442
-    // gets resolved. Else, iOS users cannot open `.excalidraw` files.
-    // extensions: ["json", "excalidraw", "png", "svg"],
+    // gets resolved. Else, iOS users cannot open scene files.
+    // extensions: ["json", "excalidraw", "akyllytagta", "png", "svg"],
   });
   return loadFromBlob(file, localAppState, localElements, file.handle);
 };
