@@ -465,11 +465,11 @@ class Collab extends PureComponent<CollabProps, CollabState> {
     this.portal.close();
     this.fileManager.reset();
     this.socketAliasToPrimary.clear();
-    this.setRoomRole("viewer");
     this.setRoomParticipants([]);
     appJotaiStore.set(roomDefaultJoinRoleAtom, "viewer");
     if (!opts?.isUnload) {
       this.setIsCollaborating(false);
+      this.setRoomRole("viewer");
       this.setActiveRoomLink(null);
       this.collaborators = new Map();
       this.excalidrawAPI.updateScene({
@@ -836,6 +836,9 @@ class Collab extends PureComponent<CollabProps, CollabState> {
       }
       this.stopCollaboration(false);
       window.history.replaceState({}, APP_NAME, window.location.origin);
+      if (!this.suppressSessionExpiredDialog) {
+        this.setErrorDialog(t("errors.collabSessionExpired"));
+      }
     });
 
     this.portal.socket.on(
@@ -1171,7 +1174,9 @@ class Collab extends PureComponent<CollabProps, CollabState> {
     appJotaiStore.set(roomRoleAtom, role);
     this.excalidrawAPI.updateScene({
       appState: {
-        viewModeEnabled: role === "viewer",
+        // Keep viewer mode only while collaboration is active.
+        // Prevents toolbar from staying hidden after a session stops.
+        viewModeEnabled: this.isCollaborating() && role === "viewer",
       },
       captureUpdate: CaptureUpdateAction.NEVER,
     });
@@ -1221,14 +1226,18 @@ class Collab extends PureComponent<CollabProps, CollabState> {
   stopSessionForAll = () => {
     this.suppressSessionExpiredDialog = true;
     const roomId = this.portal.roomId;
-    if (this.portal.socket && this.portal.roomId) {
-      this.portal.socket.emit("stop-session", { roomId: this.portal.roomId });
+    try {
+      if (this.portal.socket && this.portal.roomId) {
+        this.portal.socket.emit("stop-session", { roomId: this.portal.roomId });
+      }
+      if (roomId) {
+        clearRoomOwnerClaim(roomId);
+      }
+      window.history.replaceState({}, APP_NAME, window.location.origin);
+      this.stopCollaboration(false, { skipStorageSave: true });
+    } finally {
+      this.suppressSessionExpiredDialog = false;
     }
-    if (roomId) {
-      clearRoomOwnerClaim(roomId);
-    }
-    window.history.replaceState({}, APP_NAME, window.location.origin);
-    this.stopCollaboration(false, { skipStorageSave: true });
   };
 
   setErrorIndicator = (errorMessage: string | null) => {

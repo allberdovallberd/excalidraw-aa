@@ -171,5 +171,13 @@
         border: none;
       }
     }
+
+    &__signature {
+      flex: 0 0 auto;
+      text-align: center;
+      font-size: 0.78rem;
+      opacity: 0.8;
+      padding: 0.5rem 0.75rem 0.25rem;
+    }
   }
 }

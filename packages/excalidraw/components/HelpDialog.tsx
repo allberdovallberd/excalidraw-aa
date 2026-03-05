@@ -472,6 +472,9 @@ export const HelpDialog = ({ onClose }: { onClose?: () => void }) => {
             />
           </ShortcutIsland>
         </Section>
+        <div className="HelpDialog__signature">
+          Allaberdiyew Allaberdi - 2026
+        </div>
       </Dialog>
     </>
   );

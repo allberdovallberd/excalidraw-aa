@@ -282,7 +282,7 @@
     "asyncPasteFailedOnParse": "Goýup bolmady.",
     "copyToSystemClipboardFailed": "Alyş-çalyş buferine göçürip alyp bolmady.",
     "saveLibraryError": "Kitaphanany ammara ýazyp bolmady. Üýtgeşmeleri ýitirmezlik üçin kitaphanany ýerli faýyla ýazyp alyň.",
-    "collabSessionExpired": "Bu hyzmatdaşlyk baglanyşygy gutardy.",
+    "collabSessionExpired": "Bu baglanyşyk tamamlandy.",
     "onlyRoomCreatorCanManageRoles": "Diňe otagy döreden adam rollary dolandyryp biler."
   },
   "toolBar": {

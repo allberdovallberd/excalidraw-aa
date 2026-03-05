@@ -115,6 +115,9 @@ export const DefaultSidebar = Object.assign(
               <SearchMenu />
             </Sidebar.Tab>
             {children}
+            <div className="default-sidebar__signature">
+              Allaberdiyew Allaberdi - 2026
+            </div>
           </Sidebar.Tabs>
         </Sidebar>
       );
